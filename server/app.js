@@ -10,21 +10,22 @@ const server=createServer(app);
 const io = new Server(server,{
     cors:{
         origin:"https://rahulsahofficial.github.io",
+        // origin:"http://192.168.1.112:5500",
         methods:["GET","POST"]
     },
 });
 
 
 io.on("connection",(socket)=>{
-    // console.log(`New Client Joined ${socket.id}`);
+    console.log(`New Client Joined ${socket.id}`);
     socket.on("send-message",(data)=>{
-        // console.log(data);
+        console.log(data);
         io.to(sockets[data.rec]).emit("new-message",data.data);
     });
     socket.on("check-username",(uname)=>{
         if(sockets[uname]==undefined){
             sockets[uname]=socket.id;
-            // console.log(sockets)
+            console.log(sockets)
             socket.emit("username-response",true);
             io.emit("add-socket",(Object.keys(sockets)))
         }
@@ -38,7 +39,7 @@ io.on("connection",(socket)=>{
                 break;
             }
         }
-        // console.log(`disconnect ${socket.id}`);
+        console.log(`disconnect ${socket.id}`);
         io.emit("add-socket",(Object.keys(sockets)))
     });
 })

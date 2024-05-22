@@ -8,6 +8,8 @@ const msgsBox=document.getElementById("msgs-box");
 const usernameBox=document.getElementById("username-box")
 const chatBox=document.getElementById("chat-box");
 const onlineList=document.getElementById("online-list");
+var tone = new Audio('tone/incoming-message.mp3');
+tone.volume=0.5;
 
 
 let username=""
@@ -24,8 +26,11 @@ sendBtn.addEventListener("click",(e)=>{
     const rec=recepient.value;
     const msg=message.value;
     message.value="";
-    const obj={rec,"data":{"sender":username,"msg":msg}};
-    sendMessage(obj);
+    if(rec!=username){
+        const obj={rec,"data":{"sender":username,"msg":msg}};
+        sendMessage(obj);
+    }
+    selfSendMessage(rec,msg);
 })
 
 
@@ -40,8 +45,13 @@ function updateReceiver(receivers){
     onlineList.innerHTML=listHtml;
 }
 
+function selfSendMessage(receiver,msg){
+    const messageHtml=`<div class="each-message"><h3>You To : <span class="socket-id">${receiver}</span></h3><p>${msg}</p></div>`;
+    msgsBox.innerHTML=messageHtml+msgsBox.innerHTML;
+}
 
 function updateMessages({sender,msg}){
+    tone.play();
     const messageHtml=`<div class="each-message"><h3>USER: <span class="socket-id">${sender}</span></h3><p>${msg}</p></div>`;
     msgsBox.innerHTML=messageHtml+msgsBox.innerHTML;
 }
