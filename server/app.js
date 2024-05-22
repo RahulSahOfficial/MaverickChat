@@ -9,7 +9,7 @@ const app=express();
 const server=createServer(app);
 const io = new Server(server,{
     cors:{
-        origin:"https://rahulsahofficial.github.io/MaverickChat/client/",
+        origin:"https://rahulsahofficial.github.io/",
         methods:["GET","POST"]
     },
 });
