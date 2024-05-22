@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maverick Chat Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main>
+        <h1>✉️ Maverick Chat Application</h1>
+        <div class="username-box" id="username-box">
+            <form>
+                <div class="each-input">
+                    <label for="username">Enter your Username</label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <button id="start-chat">Start Chat 💬</button>
+            </form>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <h2>Your Username : <span id="socket-id" class="socket-id" id="socket-id">7uhjkla7JKIj12m9h</span></h2>
+            <div class="current-online">
+                <h3>🟢 Online Now</h3>
+                <ol id="online-list">
+                </ol>
+            </div>
+            <div class="form-box">
+                <form action="">
+                    <div class="each-input">
+                        <label for="receiver">Select Receiver</label>
+                        <select name="receiver" id="receiver" required>
+                        </select>
+                    </div>
+                    <div class="each-input">
+                        <label for="message">Enter Your Message</label>
+                        <textarea name="message" id="message" spellcheck="false"></textarea>
+                    </div>
+                    <button type="submit" id="send-btn">Send Message ➤</button>
+                </form>
+            </div>
+            
+            <div class="message-box">
+                <h2>Messages 💬</h2>
+                <div class="messages" id="msgs-box">
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    <footer>
+        <p>Chat Application By <a href="https://github.com/RahulSahOfficial">Rahul Sah</a></p>
+    </footer>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="js/index.js" defer></script>
+    <script src="js/chat.js" defer></script>
+</body>
+</html>
