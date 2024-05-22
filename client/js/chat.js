@@ -1,4 +1,4 @@
-const socket = io("https://maverick-chat.netlify.app/");
+const socket = io("https://maverickchat.onrender.com/");
 
 function setUsername(uname){
     socket.emit("check-username",uname);
