@@ -1,19 +1,16 @@
 import express from 'express';
 import {createServer} from 'http';
 import { Server } from 'socket.io';
+import path from 'path';
 
+const __dirname = path.resolve();
 const port=3000;
 let sockets={};
 
 const app=express();
+app.use(express.static(__dirname + '/client'));
 const server=createServer(app);
-const io = new Server(server,{
-    cors:{
-        origin:"https://rahulsahofficial.github.io",
-        // origin:"http://192.168.1.112:5500",
-        methods:["GET","POST"]
-    },
-});
+const io = new Server(server);
 
 
 io.on("connection",(socket)=>{
@@ -45,6 +42,10 @@ io.on("connection",(socket)=>{
 })
 
 
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/index.html'));
+  });
+  
 
 server.listen(port,()=>{
     console.log(`Server is running of port ${port}`)

@@ -1,5 +1,5 @@
 // const socket = io("http://localhost:3000");
-const socket = io("https://maverickchat.onrender.com/");
+const socket = io();
 
 function setUsername(uname){
     socket.emit("check-username",uname);
